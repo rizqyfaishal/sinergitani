@@ -1,0 +1,220 @@
+<div layout="column" flex="50" flex-offset="25" layout-padding>
+  <md-toolbar class="green-custom extra-top">
+    <div class="md-toolbar-tools">
+      <h3 class="md-title">
+        <span>Register</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-whiteframe class="bordered extra-bottom" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+    <md-content layout-padding layout="column" flex="100" class="extra-bottom">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="goto('kelompok_tani')" name="kelompok_tani">Kelompok Tani</md-nav-item>
+        <md-nav-item md-nav-click="goto('donatur')" name="donatur">Donatur</md-nav-item>
+      </md-nav-bar>
+      <div class="ext-content">
+        <md-content layout="column" flex="80" flex-offset="10" layout-padding ng-if="currentNavItem == 'kelompok_tani'">
+          <form name="kelompokTaniFormRegister">
+            <input name="utf8" type="hidden" value="&#x2713;" ng-model="group.charset"/>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" ng-model="group.token">
+            <md-input-container class="md-block">
+              <label>Nama Anda</label>
+              <md-icon md-svg-src="/assets/icons/ic_account_box_black_24px.svg" class="name"></md-icon>
+              <input ng-required="true" type="text" name="name"
+                     ng-pattern="/^[a-zA-Z\s]*$/"
+                     ng-model="group.name" />
+              <div ng-messages="kelompokTaniFormRegister.name.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Nama Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['pattern']">
+                  * Nama Anda harus Valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Nama Kelompok Tani</label>
+              <md-icon md-svg-src="/assets/icons/ic_group_black_24px.svg" class="group_name"></md-icon>
+              <input ng-required="true" type="text" name="groupName"
+                     ng-pattern="/^[a-zA-Z\s]*$/"
+                     ng-model="group.groupName" />
+              <div ng-messages="kelompokTaniFormRegister.groupName.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Nama kelompok tani diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['pattern']">
+                  * Nama Kelompok Tani harus Valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <md-icon md-svg-src="/assets/icons/ic_email_24px.svg" class="email"></md-icon>
+              <input ng-required="true" type="email" name="email" ng-model="group.email" />
+              <div ng-messages="kelompokTaniFormRegister.email.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Email Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['email']">
+                  * Email yang Anda masukkan harus valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Nomor Telepon</label>
+              <md-icon md-svg-src="/assets/icons/ic_contact_phone_black_24px.svg" class="phone"></md-icon>
+              <input ng-required="true" type="text" name="phone" ng-model="group.phone"
+                     ng-pattern="/^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/"/>
+              <div ng-messages="kelompokTaniFormRegister.phone.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Nomor Telepon Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['pattern']">
+                  * Nomor Telepon Anda harus Valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <md-icon md-svg-src="/assets/icons/ic_vpn_key_black_24px.svg" class="password"></md-icon>
+              <input ng-required="true" type="password" ng-model="group.password" ng-required="true" name="password"/>
+              <div ng-messages="kelompokTaniFormRegister.password.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Password Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block province">
+              <label>Provinsi</label>
+              <md-icon md-svg-src="/assets/icons/ic_public_black_24px.svg" class="province"></md-icon>
+              <md-select placeholder="Provinsi Anda" ng-required ng-model="group.province" name="province"
+                         md-on-open="loadProvinces()">
+                <md-option ng-value="{{ province.id }}" ng-repeat="province in provinces">{{ province.name }}</md-option>
+              </md-select>
+              <div ng-messages="kelompokTaniFormRegister.province.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Provinsi Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block regency">
+              <label>Kabupaten</label>
+              <md-icon md-svg-src="/assets/icons/ic_location_city_black_24px.svg" class="province"></md-icon>
+              <md-select placeholder="Kabupaten Anda" ng-required ng-model="group.regency" name="regency"
+                         md-on-open="loadRegencies(group.province)">
+                <md-option ng-value="{{ regency.id }}" ng-repeat="regency in regencies">{{ regency.name }}</md-option>
+              </md-select>
+              <div ng-messages="kelompokTaniFormRegister.regency.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Kabupaten Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block district">
+              <label>Kecamatan</label>
+              <md-icon md-svg-src="/assets/icons/ic_domain_black_24px.svg" class="district"></md-icon>
+              <md-select placeholder="Kecamatan Anda" ng-required ng-model="group.district" name="district"
+                         md-on-open="loadDistricts(group.regency)">
+                <md-option ng-value="{{ district.id }}" ng-repeat="district in districts">{{ district.name }}</md-option>
+              </md-select>
+              <div ng-messages="kelompokTaniFormRegister.district.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Kecamatan Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block village">
+              <label>Desa</label>
+              <md-icon md-svg-src="/assets/icons/ic_pin_drop_black_24px.svg" class="village"></md-icon>
+              <md-select placeholder="Desa Anda" ng-required ng-model="group.village" name="province"
+                         md-on-open="loadVillages(group.district)">
+                <md-option ng-value="village.id" ng-repeat="village in villages">{{ village.name }}</md-option>
+              </md-select>
+              <div ng-messages="kelompokTaniFormRegister.village.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Desa Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container>
+              <md-button type="submit" class="md-raised md-primary"
+                         ng-click="kelompokTaniRegister(group);"
+                         ng-disabled="kelompokTaniFormRegister.$invalid || processing">
+                <span ng-show="processing">Loading ...</span>
+                <span ng-hide="processing">Register</span>
+              </md-button>
+            </md-input-container>
+          </form>
+        </md-content>
+
+        <md-content layout="column" flex="80" flex-offset="10" layout-padding ng-if="currentNavItem == 'donatur'">
+          <form name="donaturFormRegister" ng-submit="donaturRegister(user);">
+            <input name="utf8" type="hidden" value="&#x2713;" ng-model="user.charset"/>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" ng-model="user.token">
+            <md-input-container class="md-block">
+              <label>Nama Anda</label>
+              <md-icon md-svg-src="/assets/icons/ic_account_box_black_24px.svg" class="name"></md-icon>
+              <input ng-required="true" type="text" name="name"
+                     ng-pattern="/^[a-zA-Z\s]*$/"
+                     ng-model="user.name" />
+              <div ng-messages="donaturFormRegister.name.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Nama Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['pattern']">
+                  * Nama Anda harus Valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <md-icon md-svg-src="/assets/icons/ic_email_24px.svg" class="email"></md-icon>
+              <input ng-required="true" type="email" name="email" ng-model="user.email" />
+              <div ng-messages="donaturFormRegister.email.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Email Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['email']">
+                  * Email yang Anda masukkan harus valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Nomor Telepon</label>
+              <md-icon md-svg-src="/assets/icons/ic_contact_phone_black_24px.svg" class="phone"></md-icon>
+              <input ng-required="true" type="text" name="phone" ng-model="user.phone"
+                     ng-pattern="/^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/"/>
+              <div ng-messages="donaturFormRegister.phone.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  * Nomor Telepon Anda diperlukan dalam proses registrasi ini
+                </div>
+                <div ng-message-exp="['pattern']">
+                  * Nomor Telepon Anda harus Valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <md-icon md-svg-src="/assets/icons/ic_vpn_key_black_24px.svg" class="password"></md-icon>
+              <input required type="password" ng-model="user.password" ng-required="true" name="password"/>
+              <div ng-messages="donaturFormRegister.password.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  * Password Anda diperlukan
+                </div>
+              </div>
+            </md-input-container>
+
+            <div layout="column" layout-align="center center">
+              <md-button type="submit" class="md-raised md-primary"
+                         ng-click="kelompokTaniRegister(group);"
+                         ng-disabled="kelompokTaniFormRegister.$invalid || processing">
+                <span ng-show="processing">Loading ...</span>
+                <span ng-hide="processing">Register</span>
+              </md-button>
+            </div>
+          </form>
+        </md-content>
+      </div>
+    </md-content>
+  </md-whiteframe>
+</div>

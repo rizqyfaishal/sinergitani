@@ -1,0 +1,46 @@
+<div layout="row" layout-align="center space-around" layout-padding="" layout-wrap="">
+  <a href="#" class="md-button md-raised md-primary" >Pedoman Penggalangan Dana</a>
+  <a href="#" class="md-button md-raised md-primary">Galang Dana</a>
+</div>
+<div layout="row" layout-align="start start" layout-padding layout-wrap>
+  <div layout="row" layout-padding flex="25">
+    <md-card>
+      <img ng-src="{{ '/assets/user.png' }}" class="md-card-image circle" alt="Washed Out" width="70">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline" layout-align="center center" layout="row">Kelompok Tani</span>
+          <span class="md-display-1" layout-align="center center" layout="row">{{ currentUser.user.group_name }}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <span class="md-headline" layout-align="center center" layout="row">Kelompok Tani</span>
+      </md-card-content>
+      <md-card-actions layout="column" layout-align="start">
+        <md-button>Action 1</md-button>
+        <md-button>Action 2</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div layout="row" layout-padding flex="75">
+    <md-whiteframe class="md-whiteframe-0dp" flex="100" layout="column" layout-padding>
+      <h1 class="md-headline bottom-bordered">Perkembangan Pendanaan</h1>
+      <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+              <img ng-src="{{ '/assets/user.png' }}" class="md-card-image circle" alt="Washed Out" width="70">
+            </div>
+          </md-card-title-media>
+          <md-card-title-text>
+            <span class="md-headline">Card with image</span>
+            <span class="md-subhead">Large</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+    </md-whiteframe>
+  </div>
+</div>

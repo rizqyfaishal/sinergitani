@@ -1,0 +1,98 @@
+<div layout="column" flex="50" flex-offset="25" layout-padding>
+  <md-toolbar class="green-custom extra-top">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+      <h3 class="md-title">
+        <span>Masuk</span>
+      </h3>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Favorite">
+        <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="More">
+        <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-whiteframe class="bordered extra-bottom" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+    <md-content layout-padding layout="column" flex="100" class="extra-bottom">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="goto('kelompok_tani')" name="kelompok_tani">Kelompok Tani</md-nav-item>
+        <md-nav-item md-nav-click="goto('donatur')" name="donatur">Donatur</md-nav-item>
+      </md-nav-bar>
+      <div class="ext-content">
+        <md-content ng-init="user.category = 1" ng-if="currentNavItem == 'kelompok_tani'" layout="column" flex="80" flex-offset="10" layout-padding>
+          <form name="loginForm" ng-submit="login(user)">
+            <md-input-container class="md-block">
+              <label>Your Email</label>
+              <md-icon md-svg-src="/assets/icons/ic_email_24px.svg" class="email"></md-icon>
+              <input ng-required="true" type="email" name="email" ng-model="user.email" />
+              <div ng-messages="loginForm.email.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  Your email required
+                </div>
+                <div ng-message-exp="['email']">
+                  Your Email must be valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <md-icon md-svg-src="/assets/icons/ic_vpn_key_black_24px.svg" class="password"></md-icon>
+              <input required type="password" ng-model="user.password" ng-required="true" name="password"/>
+              <div ng-messages="loginForm.password.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  Your Password Required
+                </div>
+              </div>
+            </md-input-container>
+
+            <div layout="column" layout-align="center center">
+              <md-button type="submit" class="md-raised md-primary"
+                         ng-disabled="loginForm.$invalid || processing">
+                <span ng-hide="processing">Login</span>
+                <span ng-show="processing">Loading ....</span>
+              </md-button></div>
+          </form>
+        </md-content>
+        <md-content ng-init="user.category = 2" ng-if="currentNavItem == 'donatur'" layout="column" flex="80" flex-offset="10" layout-padding>
+          <form name="loginForm" ng-submit="login(user)">
+            <md-input-container class="md-block">
+              <label>Your Email</label>
+              <md-icon md-svg-src="/assets/icons/ic_email_24px.svg" class="email"></md-icon>
+              <input ng-required="true" type="email" name="email" ng-model="user.email" />
+              <div ng-messages="loginForm.email.$error" role="alert">
+                <div ng-message-exp="['required']">
+                  Your email required
+                </div>
+                <div ng-message-exp="['email']">
+                  Your Email must be valid
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <md-icon md-svg-src="/assets/icons/ic_vpn_key_black_24px.svg" class="password"></md-icon>
+              <input required type="password" ng-model="user.password" ng-required="true" name="password"/>
+              <div ng-messages="loginForm.password.$error" multiple md-auto-hide="false">
+                <div ng-message="required">
+                  Your Password Required
+                </div>
+              </div>
+            </md-input-container>
+
+            <div layout="column" layout-align="center center">
+              <md-button type="submit" class="md-raised md-primary"
+                         ng-disabled="loginForm.$invalid || processing">
+                <span ng-hide="processing">Login</span>
+                <span ng-show="processing">Loading ....</span>
+              </md-button>
+            </div>
+          </form>
+        </md-content>
+      </div>
+    </md-content>
+  </md-whiteframe>
+</div>

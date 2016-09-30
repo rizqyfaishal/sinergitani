@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  group_name: MyString
+  email: MyString
+  phone: MyString
+  password_digest: MyString
+  province: one
+  regency: one
+  district: one
+  village: one
+
+two:
+  name: MyString
+  group_name: MyString
+  email: MyString
+  phone: MyString
+  password_digest: MyString
+  province: two
+  regency: two
+  district: two
+  village: two

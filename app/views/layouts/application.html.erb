@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SinergiTani</title>
+    <title><%= @page_title %></title>
+    <base href="/">
+    <meta name="root" content="<%= root_url %>" id="root"/>
+    <meta name="app_token" content="<%= form_authenticity_token %>">
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= yield :content %>
+    <%= javascript_include_tag 'application.js' %>
   </body>
 </html>

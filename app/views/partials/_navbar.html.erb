@@ -1,0 +1,80 @@
+<nav layout="column" layout-align="center center" class="navbar">
+  <md-toolbar class="md-hue-2 navbar">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" hide-gt-sm ng-click="toggleLeft();">
+        <!--<md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>-->
+      </md-button>
+      <div class="logo">
+        <img ng-src="/assets/logo.png" alt="Logo-Company" height="40" style="padding-top: 3px;">
+      </div>
+      <div class="search-box" layout="row" flex="50" flex-offset="5" hide-xs>
+        <md-content layout-padding layout="column" flex>
+          <form ng-submit="$event.preventDefault()">
+            <md-autocomplete
+            ng-disabled="ctrl.isDisabled"
+            md-no-cache="ctrl.noCache"
+            md-selected-item="ctrl.selectedItem"
+            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.selectedItemChange(item)"
+            md-items="item in ctrl.querySearch(ctrl.searchText)"
+            md-item-text="item.name"
+            md-min-length="0"
+            placeholder="Search Crowdfunding"
+            md-menu-class="autocomplete-custom-template">
+              <md-item-template>
+               <span class="item-title">
+            <md-icon md-svg-icon="assets/icons/octicon-repo.svg"></md-icon>
+            <span> {{item.name}} </span>
+          </span>
+          <span class="item-metadata">
+            <span class="item-metastat">
+              <strong>{{item.watchers}}</strong> watchers
+            </span>
+            <span class="item-metastat">
+              <strong>{{item.forks}}</strong> forks
+            </span>
+          </span>
+              </md-item-template>
+            </md-autocomplete>
+          </form>
+        </md-content>
+      </div>
+      <span flex></span>
+      <div class="info" layout="row" flex hide-xs >
+        <md-input-container>
+          <button ng-click="test()" class="md-button">Cara Kerja</button>
+        </md-input-container>
+        <md-input-container>
+          <a ui-sref="page.register" class="md-button md-raised md-primary" ng-if="!currentUser.user">Register</a>
+        </md-input-container>
+        <md-input-container>
+          <a ui-sref="page.login" class="md-button md-raised md-primary" ng-if="!currentUser.user">Login</a>
+        </md-input-container>
+        <md-input-container>
+          <button class="md-button md-raised md-primary" ng-if="currentUser.user" ng-click="logout()">Logout</button>
+        </md-input-container>
+      </div>
+      <div class="collapse-button" hide-gt-sm>
+        <md-input-container>
+          <md-button></md-button>
+        </md-input-container>
+      </div>
+    </div>
+  </md-toolbar>
+  <md-sidenav class="md-sidenav-left" md-component-id="left"
+              md-disable-backdrop md-whiteframe="4">
+
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+    </md-toolbar>
+    <md-content layout-margin>
+      <p>
+        This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+      </p>
+      <md-button ng-click="toggleLeft()" class="md-accent">
+        Close this Sidenav
+      </md-button>
+    </md-content>
+  </md-sidenav>
+</nav>

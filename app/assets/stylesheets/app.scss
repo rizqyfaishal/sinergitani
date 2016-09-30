@@ -1,0 +1,96 @@
+footer {
+  background-color: #25d275;
+}
+
+$md-toolbar-nav-height-lg: 80px;
+
+body {
+  background-color: white;
+}
+nav {
+  background-color: transparent;
+  md-toolbar {
+    &.navbar {
+      min-height: $md-toolbar-nav-height-lg;
+      .md-toolbar-tools {
+        min-height: $md-toolbar-nav-height-lg;
+      }
+    }
+    &.md-hue-2:not(.md-menu-toolbar) {
+      background-color: transparent;
+      color: black;
+      md-input-container:not(.md-input-invalid) > md-icon.name {
+        color: black;
+        fill: black;
+      }
+      md-icon {
+        color: black;
+        fill: black;
+      }
+    }
+  }
+}
+
+.md-card-image {
+  &.md-circle {
+    padding: 2em;
+  }
+}
+
+.bottom-bordered {
+  border-bottom: 2px solid black;
+}
+
+md-card-content {
+  padding-bottom: 0!important;
+}
+
+.header-blue {
+  background-color: #44c5ff;
+  color: white;
+}
+
+md-content {
+  background-color: white;
+}
+
+md-whiteframe {
+  &.extra-bottom {
+    margin-bottom: 2em;
+  }
+  &.bordered {
+    border: 1px solid rgb(63,81,181);
+  }
+}
+
+
+md-input-container {
+  md-select {
+    padding-bottom: 2em;
+  }
+  &.md-block {
+    &.province,
+    &.regency,
+    &.district,
+    &.village {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+md-toolbar {
+  min-height: 50px;
+  &.extra-top {
+    margin-top: 2em;
+  }
+  &.green {
+    background-color: #25d275;
+    color: white;
+  }
+}
+header {
+  height: 90vh;
+  display: table;
+  background: url("/assets/header1.jpg") no-repeat;
+  background-size: cover;
+
+}

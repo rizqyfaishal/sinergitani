@@ -1,0 +1,33 @@
+<div layout="column" flex="100" layout-align="center center" class="header-blue">
+  <h1 class="md-title">DONASIKAN UNTUK</h1>
+</div>
+<div layout="row" flex="" layout-align="center center">
+  <div layout="row" flex="90" layout-offset="5" layout-padding layout-align="center space-around" layout-wrap>
+    <div flex="33" layout="row" layout-padding ng-repeat="funding in fundings">
+      <md-card>
+        <img ng-src="{{ '/assets/header-card.JPG' }}" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ funding.title }}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            {{ funding.description }}
+          </p>
+          <h1 class="md-display-1" layout-align="end" layout="row">{{ funding.total | currency }}</h1>
+        </md-card-content>
+        <md-card-actions layout="row">
+          <div flex="50" layout="row" layout-align="center center">
+            <h1 class="md-headline">48%</h1>
+          </div>
+          <div flex="50" layout="row" layout-align="end">
+            <md-input-container>
+              <md-button class="md-raised md-primary">Donasi</md-button>
+            </md-input-container>
+          </div>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</div>

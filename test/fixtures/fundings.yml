@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  total: 9.99
+  kelompok_tani: one
+  deadline: 2016-09-29
+  description: MyText
+
+two:
+  title: MyString
+  total: 9.99
+  kelompok_tani: two
+  deadline: 2016-09-29
+  description: MyText
